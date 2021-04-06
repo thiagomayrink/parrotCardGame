@@ -3,7 +3,7 @@ body {
     background: #EEF9BF;
 }
 .titulo {
-    margin 0 auto;
+    margin: 40px auto 30px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 56px;
@@ -13,12 +13,35 @@ body {
     color: #75B79E;
 }
 .conteudo {
-    margin 0 auto;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-.cartas {
+.carta {
     margin: 17px;
+    background: #A7E9AF;
+    width: 117px;
+    height: 146px;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+}
+img {
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width: 600px) { 
+    .titulo{
+        font-size: 36px;
+        line-height: 42px;
+    }
+    .conteudo {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }

@@ -19,17 +19,44 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .carta {
     margin: 17px;
-    background: #A7E9AF;
     width: 117px;
     height: 146px;
-    border: 1px solid #99CEA8;
-    border-radius: 5px;
     display: inherit;
     justify-content: inherit;
     align-items: inherit;
+    position: relative;
 }
+.face {
+    width: 100%;
+    height: 100%;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all 1s;
+    transform-style: preserve-3d;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.carta.ativa .back-face {
+    transform: rotateY(0deg);
+}
+
+.carta.ativa .front-face {
+    transform: rotateY(-180deg);
+}
+
 img {
     width: 100px;
     height: 100px;

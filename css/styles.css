@@ -19,7 +19,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 .carta {
     margin: 17px;
     width: 117px;
@@ -44,22 +43,18 @@ body {
     transition: all 1s;
     transform-style: preserve-3d;
 }
-
 .back-face {
     transform: rotateY(180deg);
 }
-
 .carta.ativa .back-face {
     transform: rotateY(0deg);
 }
-
 .carta.ativa .front-face {
     transform: rotateY(-180deg);
 }
 .carta.certa .back-face {
     transform: rotateY(0deg);
 }
-
 .carta.certa .front-face {
     transform: rotateY(-180deg);
 }
@@ -67,7 +62,6 @@ img {
     width: 100px;
     height: 100px;
 }
-
 @media (max-width: 600px) { 
     .titulo{
         font-size: 36px;

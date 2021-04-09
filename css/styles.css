@@ -56,7 +56,14 @@ body {
 .carta.ativa .front-face {
     transform: rotateY(-180deg);
 }
+.carta.certa .back-face {
+    transform: rotateY(0deg);
+    border-color: blue;
+}
 
+.carta.certa .front-face {
+    transform: rotateY(-180deg);
+}
 img {
     width: 100px;
     height: 100px;

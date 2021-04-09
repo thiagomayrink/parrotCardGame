@@ -1,5 +1,5 @@
 let qtd_cartas = parseInt(prompt("Com quantas cartas você quer jogar? (apenas números pares entre 4 e 14)"));
-let contadorAtivas = 0;
+let contadorCertas = 0;
 let contadorJogadas = 0;
 const foramViradas =[];
 const todasAsCartas = ['img/fiestaparrot.gif', 'img/fiestaparrot.gif','img/bobrossparrot.gif', 'img/bobrossparrot.gif', 'img/explodyparrot.gif', 'img/explodyparrot.gif', 'img/metalparrot.gif', 'img/metalparrot.gif', 'img/revertitparrot.gif', 'img/revertitparrot.gif', 'img/tripletsparrot.gif', 'img/tripletsparrot.gif', 'img/unicornparrot.gif', 'img/unicornparrot.gif']
@@ -41,24 +41,39 @@ function virar(virada) {
     //a carta está virada?
     const foiVirada = virada.classList.contains('ativa');
     
-    //se a carta não está virada, vire.
+    //se a carta não está virada, vire e adicione à lista de cartas viradas.
     if(foiVirada === false) {
         virada.classList.add('ativa');
         foramViradas.push(virada);
-        console.log(foramViradas)
-    } else if (foramViradas.length >= 2) {
-        foramViradas
-
-    } else {
-        virada.classList.remove('ativa');
-        foramViradas.length = (foramViradas.length-1);
-        console.log(foramViradas)
+    } 
+    // se duas cartas foram viradas, verifique se possuem o mesmo conteudo. 
+    while (foramViradas.length === 2) {
+        const cartasAtivas = document.querySelectorAll('.ativa')
+        if (foramViradas[0].innerHTML === foramViradas[1].innerHTML){
+            cartasAtivas[0].classList.add('certa');
+            cartasAtivas[1].classList.add('certa');
+            cartasAtivas[0].classList.remove('ativa');
+            cartasAtivas[1].classList.remove('ativa');
+            cartasAtivas[0].setAttribute('onclick', "");
+            cartasAtivas[1].setAttribute('onclick', "");
+            contadorCertas +=2;
+        } 
+        // caso não possuam o mesmo conteudo, vire as duas cartas para baixo.
+        //else if (foramViradas[0].innerHTML !== foramViradas[1].innerHTML)
+        else {
+            function desvirar() {
+                cartasAtivas[0].classList.remove('ativa');
+                cartasAtivas[1].classList.remove('ativa'); 
+            }
+            setTimeout(desvirar,1000)
+        }
+        foramViradas.length = 0;
     }
-
     contadorJogadas++
+    if (contadorCertas === qtd_cartas){
+        setTimeout(alert,1000,`Você ganhou em ${contadorJogadas} jogadas!`)
+        //alert(`Você ganhou em ${contadorJogadas} jogadas!`);
+    }
 }
-
-
-
 
 window.onload = iniciarJogo;

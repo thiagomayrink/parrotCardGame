@@ -1,3 +1,4 @@
+// variaveis globais
 let qtd_cartas = parseInt(prompt("Com quantas cartas você quer jogar? (apenas números pares entre 4 e 14)"));
 let contadorCertas = 0;
 let contadorJogadas = 0;

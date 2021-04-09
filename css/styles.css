@@ -58,7 +58,6 @@ body {
 }
 .carta.certa .back-face {
     transform: rotateY(0deg);
-    border-color: blue;
 }
 
 .carta.certa .front-face {

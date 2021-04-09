@@ -2,15 +2,27 @@ let qtd_cartas = parseInt(prompt("Com quantas cartas você quer jogar? (apenas n
 let contadorAtivas = 0;
 let contadorJogadas = 0;
 const foramViradas =[];
-const todasAsCartas =['img/fiestaparrot.gif', 'img/bobrossparrot.gif', 'img/explodyparrot.gif', 'img/metalparrot.gif', 'img/revertitparrot.gif', 'img/tripletsparrot.gif', 'img/unicornparrot.gif',]
+const todasAsCartas = ['img/fiestaparrot.gif', 'img/fiestaparrot.gif','img/bobrossparrot.gif', 'img/bobrossparrot.gif', 'img/explodyparrot.gif', 'img/explodyparrot.gif', 'img/metalparrot.gif', 'img/metalparrot.gif', 'img/revertitparrot.gif', 'img/revertitparrot.gif', 'img/tripletsparrot.gif', 'img/tripletsparrot.gif', 'img/unicornparrot.gif', 'img/unicornparrot.gif']
 
 function iniciarJogo() {
     //escolher o numero de cartas
     while (qtd_cartas !== 4 && qtd_cartas !== 6 && qtd_cartas !== 8 && qtd_cartas !== 10 && qtd_cartas !== 12 && qtd_cartas !== 14) {
         qtd_cartas = parseInt(prompt("Com quantas cartas você quer jogar? (apenas números pares entre 4 e 14)"));
     }
+
+    //embaralha cartas
+    function comparador() { 
+        return Math.random() - 0.5; 
+    }
+
+    //embaralha cartas e define quantidade.
+    let cartasEmbaralhadas = [];
+    cartasEmbaralhadas = todasAsCartas;
+    cartasEmbaralhadas.length = qtd_cartas;
+    cartasEmbaralhadas = cartasEmbaralhadas.sort(comparador);
+    
     //dar as cartas
-    for (let i =0; i < (qtd_cartas/2); i++) {
+    for (let i =0; i < qtd_cartas; i++) {
         let mesa = document.querySelector('.conteudo')
         mesa.innerHTML += `        
         <div class="carta" onclick="virar(this)">
@@ -18,16 +30,7 @@ function iniciarJogo() {
                 <img src="img/front.png" alt="frente">
             </div>
             <div class="back-face face">
-                <img src="${todasAsCartas[i]}" alt="verso">
-            </div>
-        </div>
-            
-        <div class="carta" onclick="virar(this)">
-            <div class="front-face face">
-                <img src="img/front.png" alt="frente">
-            </div>
-            <div class="back-face face">
-                <img src="${todasAsCartas[i]}" alt="verso">
+                <img src="${cartasEmbaralhadas[i]}" alt="verso">
             </div>
         </div>
     `;

@@ -4,6 +4,8 @@ let contadorCertas = 0;
 let contadorJogadas = 0;
 const foramViradas =[];
 const todasAsCartas = ['img/fiestaparrot.gif', 'img/fiestaparrot.gif','img/bobrossparrot.gif', 'img/bobrossparrot.gif', 'img/explodyparrot.gif', 'img/explodyparrot.gif', 'img/metalparrot.gif', 'img/metalparrot.gif', 'img/revertitparrot.gif', 'img/revertitparrot.gif', 'img/tripletsparrot.gif', 'img/tripletsparrot.gif', 'img/unicornparrot.gif', 'img/unicornparrot.gif']
+//travar jogadas.
+let bloquear = false;
 
 function iniciarJogo() {
     //escolher o numero de cartas
@@ -41,13 +43,16 @@ function iniciarJogo() {
 function virar(virada) {
     //a carta está virada?
     const foiVirada = virada.classList.contains('ativa');
-    
     //se a carta não está virada, vire e adicione à lista de cartas viradas.
+    if (bloquear){
+        return;
+    }
+
     if(foiVirada === false) {
         virada.classList.add('ativa');
         foramViradas.push(virada);
     } 
-    // se duas cartas foram viradas, verifique se possuem o mesmo conteudo. 
+    // se duas cartas foram viradas, verifique se possuem o mesmo conteudo.
     while (foramViradas.length === 2) {
         const cartasAtivas = document.querySelectorAll('.ativa')
         if (foramViradas[0].innerHTML === foramViradas[1].innerHTML){
@@ -63,9 +68,13 @@ function virar(virada) {
         //else if (foramViradas[0].innerHTML !== foramViradas[1].innerHTML)
         else {
             function desvirar() {
-                cartasAtivas[0].classList.remove('ativa');
-                cartasAtivas[1].classList.remove('ativa'); 
+                    cartasAtivas[0].classList.remove('ativa');
+                    cartasAtivas[1].classList.remove('ativa');
+                if (bloquear) {
+                    bloquear = false;
+                }
             }
+            bloquear = true;
             setTimeout(desvirar,1000)
         }
         foramViradas.length = 0;
